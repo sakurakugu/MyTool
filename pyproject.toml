@@ -1,0 +1,28 @@
+[project]
+name = "mytool"
+version = "0.1.0"
+
+[tool.pyside6-project]
+files = [
+    "main.py",
+    "src/__init__.py",
+    "src/app.py",
+    "src/models/__init__.py",
+    "src/models/sidebar_model.py",
+    "src/models/tool_manager.py",
+    "src/utils/__init__.py",
+    "src/utils/config.py",
+    "ui/Main.qml",
+    "ui/components/ContentArea.qml",
+    "ui/components/SidebarComponent.qml",
+    "ui/components/SidebarItem.qml",
+    "ui/components/TabBarComponent.qml",
+    "ui/components/ToolBarComponent.qml",
+    "ui/pages/AllToolsPage.qml",
+    "ui/pages/CodeToolPage.qml",
+    "ui/pages/FileToolPage.qml",
+    "ui/pages/ImageToolPage.qml",
+    "ui/pages/ProfilePage.qml",
+    "ui/pages/SettingsPage.qml",
+    "ui/pages/TextToolPage.qml"
+]
