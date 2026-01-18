@@ -21,9 +21,15 @@ Rectangle {
         
         // 根据当前工具加载对应页面
         source: {
-            switch (contentArea.currentTool) {
+            switch (app.currentTool) {
                 case "all_tools":
                     return "../pages/AllToolsPage.qml"
+                case "windows_tool":
+                    return "../pages/WindowsToolPage.qml"
+                case "git_tool":
+                    return "../pages/GitToolPage.qml"
+                case "qt_tool":
+                    return "../pages/QtToolPage.qml"
                 case "text_tool":
                     return "../pages/TextToolPage.qml"
                 case "image_tool":

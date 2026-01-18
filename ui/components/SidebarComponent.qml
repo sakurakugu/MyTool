@@ -68,7 +68,7 @@ Rectangle {
             SidebarItem {
                 Layout.fillWidth: true
                 itemIcon: "👤"
-                itemText: "个人中心"
+                itemText: "个人中心(占位)"
                 
                 onClicked: {
                     sidebar.profileClicked()
@@ -79,7 +79,7 @@ Rectangle {
             SidebarItem {
                 Layout.fillWidth: true
                 itemIcon: "⚙️"
-                itemText: "设置"
+                itemText: "设置(占位)"
                 
                 onClicked: {
                     sidebar.settingsClicked()

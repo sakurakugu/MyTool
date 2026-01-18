@@ -23,6 +23,24 @@ class ToolManager(QObject):
                 "category": "main"
             },
             {
+                "id": "windows_tool",
+                "name": "Windows工具",
+                "icon": "🪟",
+                "category": "tool"
+            },
+            {
+                "id": "git_tool",
+                "name": "Git工具",
+                "icon": "🔧",
+                "category": "tool"
+            },
+            {
+                "id": "qt_tool",
+                "name": "Qt翻译工具",
+                "icon": "🌐",
+                "category": "tool"
+            },
+            {
                 "id": "text_tool",
                 "name": "文本工具（例子）",
                 "icon": "📝",

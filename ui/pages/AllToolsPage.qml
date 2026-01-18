@@ -77,7 +77,7 @@ Rectangle {
                     onClicked: {
                         console.log("点击工具:", modelData.id)
                         if (typeof app !== 'undefined') {
-                            app.switchTool(modelData.id)
+                            app.requestAddTab(modelData.id)
                         }
                     }
                 }

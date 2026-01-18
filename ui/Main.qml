@@ -45,19 +45,16 @@ ApplicationWindow {
                     
                     // 切换工具
                     app.switchTool(toolId)
-                    contentArea.currentTool = toolId
                 }
                 
                 onSettingsClicked: {
-                    tabbar.addTab("settings", "设置")
+                    tabbar.addTab("settings", "设置(占位)")
                     app.openSettings()
-                    contentArea.currentTool = "settings"
                 }
                 
                 onProfileClicked: {
-                    tabbar.addTab("profile", "个人中心")
+                    tabbar.addTab("profile", "个人中心(占位)")
                     app.openProfile()
-                    contentArea.currentTool = "profile"
                 }
             }
             
@@ -82,7 +79,6 @@ ApplicationWindow {
                     
                     onTabSwitched: function(toolId) {
                         app.switchTool(toolId)
-                        contentArea.currentTool = toolId
                     }
                     
                     onTabClosed: function(toolId) {
@@ -97,6 +93,12 @@ ApplicationWindow {
                     Layout.fillHeight: true
                 }
             }
+        }
+    }
+    Connections {
+        target: app
+        function onAddTabRequested(toolId, title) {
+            tabbar.addTab(toolId, title)
         }
     }
 }

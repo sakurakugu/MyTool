@@ -10,6 +10,9 @@ from PySide6.QtGui import QGuiApplication
 from PySide6.QtQml import QQmlApplicationEngine
 
 from .models.tool_manager import ToolManager
+from .models.windows_tools import WindowsTools
+from .models.git_tools import GitTools
+from .models.qt_tools import QtTools
 from .utils.config import APP_NAME, APP_VERSION
 
 
@@ -18,6 +21,7 @@ class Application(QObject):
     
     # 信号
     toolChanged = Signal(str)  # 工具切换信号
+    addTabRequested = Signal(str, str)
     
     def __init__(self):
         super().__init__()
@@ -25,6 +29,11 @@ class Application(QObject):
         self._tool_manager = ToolManager()  # 工具管理器
         self._app_name = APP_NAME
         self._app_version = APP_VERSION
+        
+        # 创建工具实例
+        self._windows_tools = WindowsTools()
+        self._git_tools = GitTools()
+        self._qt_tools = QtTools()
         
     @Property(str, notify=toolChanged)
     def currentTool(self):
@@ -66,9 +75,27 @@ class Application(QObject):
         print("打开个人中心")
         self.currentTool = "profile"
     
+    @Slot(str)
+    def requestAddTab(self, tool_id):
+        tool = self._tool_manager.get_tool_by_id(tool_id)
+        title = tool["name"] if tool and "name" in tool else tool_id
+        self.addTabRequested.emit(tool_id, title)
+
     def get_tool_manager(self):
         """获取工具管理器"""
         return self._tool_manager
+    
+    def get_windows_tools(self):
+        """获取Windows工具"""
+        return self._windows_tools
+    
+    def get_git_tools(self):
+        """获取Git工具"""
+        return self._git_tools
+    
+    def get_qt_tools(self):
+        """获取Qt工具"""
+        return self._qt_tools
     
     def get_sidebar_model(self):
         """获取侧边栏模型"""

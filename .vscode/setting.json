@@ -1,0 +1,8 @@
+{
+  "qml.qtInstallPath": "C:\\Software\\Deps\\Qt\\6.10.1\\mingw_64",
+  "qml.importPaths": [
+    "C:\\Software\\Deps\\Qt\\6.10.1\\mingw_64\\qml"
+  ],
+  "qml.enableQmllint": true,
+  "qml.enableFormatter": true
+}
