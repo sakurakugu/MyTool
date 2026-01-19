@@ -13,6 +13,7 @@ from .models.tool_manager import ToolManager
 from .models.windows_tools import WindowsTools
 from .models.git_tools import GitTools
 from .models.qt_tools import QtTools
+from .models.file_time_tools import FileTimeTools
 from .utils.config import APP_NAME, APP_VERSION
 
 
@@ -34,6 +35,7 @@ class Application(QObject):
         self._windows_tools = WindowsTools()
         self._git_tools = GitTools()
         self._qt_tools = QtTools()
+        self._file_time_tools = FileTimeTools()
         
     @Property(str, notify=toolChanged)
     def currentTool(self):
@@ -97,6 +99,10 @@ class Application(QObject):
         """获取Qt工具"""
         return self._qt_tools
     
+    def get_file_time_tools(self):
+        """获取文件时间工具"""
+        return self._file_time_tools
+    
     def get_sidebar_model(self):
         """获取侧边栏模型"""
         return self._sidebar_model
@@ -119,6 +125,10 @@ def create_application():
     context = engine.rootContext()
     context.setContextProperty("app", application)
     context.setContextProperty("toolManager", application.get_tool_manager())
+    context.setContextProperty("windowsTools", application.get_windows_tools())
+    context.setContextProperty("gitTools", application.get_git_tools())
+    context.setContextProperty("qtTools", application.get_qt_tools())
+    context.setContextProperty("fileTimeTools", application.get_file_time_tools())
     
     # 加载主 QML 文件
     qml_file = Path(__file__).resolve().parent.parent / "ui" / "Main.qml"

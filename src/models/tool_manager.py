@@ -63,6 +63,12 @@ class ToolManager(QObject):
                 "name": "文件工具（例子）",
                 "icon": "📁",
                 "category": "tool"
+            },
+            {
+                "id": "file_time_tool",
+                "name": "文件时间修改",
+                "icon": "🕒",
+                "category": "tool"
             }
         ]
     

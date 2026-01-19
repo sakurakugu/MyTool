@@ -84,3 +84,6 @@ CMakeLists.txt.user*
 
 # 用户配置文件
 *.user
+
+# 旧的工具（待移植）
+old_tools/

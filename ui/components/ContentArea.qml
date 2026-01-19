@@ -21,6 +21,9 @@ Rectangle {
         
         // 根据当前工具加载对应页面
         source: {
+            if (typeof app === 'undefined' || app === null) {
+                return "../pages/AllToolsPage.qml"
+            }
             switch (app.currentTool) {
                 case "all_tools":
                     return "../pages/AllToolsPage.qml"
@@ -38,6 +41,8 @@ Rectangle {
                     return "../pages/CodeToolPage.qml"
                 case "file_tool":
                     return "../pages/FileToolPage.qml"
+                case "file_time_tool":
+                    return "../pages/FileTimeToolPage.qml"
                 case "settings":
                     return "../pages/SettingsPage.qml"
                 case "profile":
