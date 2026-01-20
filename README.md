@@ -35,10 +35,10 @@ MyTool/
 │   │   └── ContentArea.qml         # 内容区域
 │   └── pages/             # 页面
 │       ├── AllToolsPage.qml        # 全部工具页面
-│       ├── TextToolPage.qml        # 文本工具页面
-│       ├── ImageToolPage.qml       # 图片工具页面
-│       ├── CodeToolPage.qml        # 代码工具页面
-│       ├── FileToolPage.qml        # 文件工具页面
+│       ├── FileTimeToolPage.qml    # 文件时间修改页面
+│       ├── GitToolPage.qml         # Git 工具页面
+│       ├── QtToolPage.qml          # Qt 工具页面
+│       ├── WindowsToolPage.qml     # Windows 工具页面
 │       ├── SettingsPage.qml        # 设置页面
 │       └── ProfilePage.qml         # 个人中心页面
 ├── resources/             # 资源文件
@@ -60,25 +60,6 @@ MyTool/
 - **中间内容区**：显示当前选中工具的页面
 
 ### 内置工具
-
-1. **文本工具（例子）** 📝
-   - 大小写转换
-   - Base64 编码/解码
-   - URL 编码/解码
-
-2. **图片工具（例子）** 🖼️
-   - 图片压缩
-   - 格式转换
-   - 图片裁剪
-
-3. **代码工具（例子）** 💻
-   - JSON 格式化
-   - XML 格式化
-   - 代码压缩
-
-4. **文件工具（例子）** 📁
-   - 文件压缩/解压
-   - 批量重命名
 
 ## 安装和运行
 

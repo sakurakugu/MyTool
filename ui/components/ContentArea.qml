@@ -35,14 +35,7 @@ Rectangle {
                     return "../pages/GitToolPage.qml"
                 case "qt_tool":
                     return "../pages/QtToolPage.qml"
-                case "text_tool":
-                    return "../pages/TextToolPage.qml"
-                case "image_tool":
-                    return "../pages/ImageToolPage.qml"
-                case "code_tool":
-                    return "../pages/CodeToolPage.qml"
-                case "file_tool":
-                    return "../pages/FileToolPage.qml"
+
                 case "file_time_tool":
                     return "../pages/FileTimeToolPage.qml"
                 case "file_filter_tool":

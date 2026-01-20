@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-# 这个项目只用于 QML / qmlls
+# 这个CMake只用于生成 QML / qmlls 的配置文件，用于 VSCode 等 IDE 自动补全
 set(APP_NAME "MyTool")
 project(${APP_NAME} LANGUAGES CXX)
 

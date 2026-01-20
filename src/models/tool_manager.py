@@ -46,30 +46,7 @@ class ToolManager(QObject):
                 "icon": "🌐",
                 "category": "tool"
             },
-            {
-                "id": "text_tool",
-                "name": "文本工具（例子）",
-                "icon": "📝",
-                "category": "tool"
-            },
-            {
-                "id": "image_tool",
-                "name": "图片工具（例子）",
-                "icon": "🖼️",
-                "category": "tool"
-            },
-            {
-                "id": "code_tool",
-                "name": "代码工具（例子）",
-                "icon": "💻",
-                "category": "tool"
-            },
-            {
-                "id": "file_tool",
-                "name": "文件工具（例子）",
-                "icon": "📁",
-                "category": "tool"
-            },
+
             {
                 "id": "file_time_tool",
                 "name": "文件时间修改",
