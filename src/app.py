@@ -15,6 +15,7 @@ from .models.linux_tools import LinuxTools
 from .models.git_tools import GitTools
 from .models.qt_tools import QtTools
 from .models.file_time_tools import FileTimeTools
+from .models.file_filter_tools import FileFilterTools
 from .utils.config import APP_NAME, APP_VERSION
 
 
@@ -38,6 +39,7 @@ class Application(QObject):
         self._git_tools = GitTools()
         self._qt_tools = QtTools()
         self._file_time_tools = FileTimeTools()
+        self._file_filter_tools = FileFilterTools()
         
     @Property(str, notify=toolChanged)
     def currentTool(self):
@@ -109,6 +111,10 @@ class Application(QObject):
         """获取文件时间工具"""
         return self._file_time_tools
     
+    def get_file_filter_tools(self):
+        """获取文件过滤转移工具"""
+        return self._file_filter_tools
+    
     def get_sidebar_model(self):
         """获取侧边栏模型"""
         return self._sidebar_model
@@ -136,6 +142,7 @@ def create_application():
     context.setContextProperty("gitTools", application.get_git_tools())
     context.setContextProperty("qtTools", application.get_qt_tools())
     context.setContextProperty("fileTimeTools", application.get_file_time_tools())
+    context.setContextProperty("fileFilterTools", application.get_file_filter_tools())
     
     # 加载主 QML 文件
     qml_file = Path(__file__).resolve().parent.parent / "ui" / "Main.qml"

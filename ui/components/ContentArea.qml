@@ -45,6 +45,8 @@ Rectangle {
                     return "../pages/FileToolPage.qml"
                 case "file_time_tool":
                     return "../pages/FileTimeToolPage.qml"
+                case "file_filter_tool":
+                    return "../pages/FileFilterToolPage.qml"
                 case "settings":
                     return "../pages/SettingsPage.qml"
                 case "profile":

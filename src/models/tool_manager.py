@@ -75,6 +75,12 @@ class ToolManager(QObject):
                 "name": "文件时间修改",
                 "icon": "🕒",
                 "category": "tool"
+            },
+            {
+                "id": "file_filter_tool",
+                "name": "文件过滤转移",
+                "icon": "🎯",
+                "category": "tool"
             }
         ]
     
