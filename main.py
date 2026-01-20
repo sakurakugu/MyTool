@@ -42,6 +42,7 @@ if __name__ == "__main__":
     context.setContextProperty("app", application)
     context.setContextProperty("toolManager", application.get_tool_manager())
     context.setContextProperty("windowsTools", application.get_windows_tools())
+    context.setContextProperty("linuxTools", application.get_linux_tools())
     context.setContextProperty("gitTools", application.get_git_tools())
     context.setContextProperty("qtTools", application.get_qt_tools())
     context.setContextProperty("fileTimeTools", application.get_file_time_tools())

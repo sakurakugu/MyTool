@@ -7,9 +7,8 @@ import QtQuick.Dialogs
  * Windows工具页面
  * 提供各种Windows系统相关的实用工具
  */
-Rectangle {
+Item {
     id: windowsToolPage
-    color: "white"
     
     // 消息对话框
     MessageDialog {
@@ -232,26 +231,53 @@ Rectangle {
         }
     }
     
-    ScrollView {
+    // 主内容区域
+    Rectangle {
         anchors.fill: parent
-        anchors.margins: 24
+        color: "white"
         
-        ColumnLayout {
-            width: parent.width
-            spacing: 20
+        ScrollView {
+            anchors.fill: parent
+            anchors.margins: 24
             
-            // 页面标题
-            Text {
-                text: "Windows工具"
-                font.pixelSize: 24
-                font.bold: true
-                color: "#333333"
-            }
-            
-            // 工具卡片容器
             ColumnLayout {
-                Layout.fillWidth: true
-                spacing: 16
+                width: parent.width
+                spacing: 20
+                
+                // 页面标题
+                Text {
+                    text: "Windows工具"
+                    font.pixelSize: 24
+                    font.bold: true
+                    color: "#333333"
+                }
+                
+                // Windows初始化工具
+                GroupBox {
+                    Layout.fillWidth: true
+                    title: "🚀 Windows系统初始化"
+                    
+                    ColumnLayout {
+                        anchors.fill: parent
+                        spacing: 12
+                        
+                        Text {
+                            Layout.fillWidth: true
+                            text: "初始化Windows系统配置，包括：\n• 安装并配置网速显示工具（TrafficMonitor）\n• Git全局配置（用户名、邮箱、编码等）\n• Git命令提示中文化"
+                            wrapMode: Text.WordWrap
+                            color: "#666666"
+                        }
+                        
+                        Button {
+                            text: "开始初始化"
+                            onClicked: {
+                                if (typeof windowsTools !== 'undefined') {
+                                    windowsTools.initializeWindows()
+                                }
+                            }
+                        }
+                    }
+                }
                 
                 // 桌面壁纸工具
                 GroupBox {

@@ -796,3 +796,189 @@ class WindowsTools(QObject):
             error_msg = f"导出失败: {str(e)}"
             self._set_message(f"❌ {error_msg}")
             self.operationFinished.emit(False, error_msg)
+    
+    @Slot()
+    def initializeWindows(self):
+        """初始化Windows系统"""
+        try:
+            self._set_message("开始初始化Windows系统...")
+            self._set_progress(0)
+            
+            # 获取脚本路径
+            script_dir = Path(__file__).parent / "resources" / "Init" / "Windows"
+            init_script = script_dir / "初始化Windows.ps1"
+            
+            if not init_script.exists():
+                self._set_message(f"❌ 初始化脚本不存在: {init_script}")
+                self.operationFinished.emit(False, "初始化脚本不存在")
+                return
+            
+            self._set_progress(20)
+            
+            # 执行PowerShell脚本
+            result = subprocess.run(
+                ["powershell.exe", "-ExecutionPolicy", "Bypass", "-File", str(init_script)],
+                capture_output=True,
+                text=True,
+                encoding='utf-8',
+                errors='ignore'
+            )
+            
+            self._set_progress(80)
+            
+            output = result.stdout if result.stdout else ""
+            error = result.stderr if result.stderr else ""
+            
+            self._set_progress(100)
+            
+            if result.returncode == 0:
+                self._set_message("✅ Windows系统初始化完成")
+                self.operationFinished.emit(True, f"初始化完成\n{output}")
+            else:
+                self._set_message(f"⚠️ 初始化脚本执行返回代码: {result.returncode}")
+                self.operationFinished.emit(True, f"初始化完成，返回代码: {result.returncode}\n{output}\n{error}")
+        
+        except Exception as e:
+            self._set_message(f"❌ 初始化失败: {str(e)}")
+            self.operationFinished.emit(False, f"初始化失败: {str(e)}")
+    
+    @Slot()
+    def installTrafficMonitor(self):
+        """安装并配置网速显示工具"""
+        try:
+            self._set_message("开始安装网速显示工具...")
+            self._set_progress(0)
+            
+            # 获取脚本路径
+            script_dir = Path(__file__).parent / "resources" / "Init" / "Windows"
+            script = script_dir / "安装并配置网速显示工具.ps1"
+            
+            if not script.exists():
+                self._set_message(f"❌ 安装脚本不存在: {script}")
+                self.operationFinished.emit(False, "安装脚本不存在")
+                return
+            
+            self._set_progress(20)
+            
+            # 执行PowerShell脚本
+            result = subprocess.run(
+                ["powershell.exe", "-ExecutionPolicy", "Bypass", "-File", str(script)],
+                capture_output=True,
+                text=True,
+                encoding='utf-8',
+                errors='ignore'
+            )
+            
+            self._set_progress(80)
+            
+            output = result.stdout if result.stdout else ""
+            error = result.stderr if result.stderr else ""
+            
+            self._set_progress(100)
+            
+            if result.returncode == 0:
+                self._set_message("✅ 网速显示工具安装完成")
+                self.operationFinished.emit(True, f"安装完成\n{output}")
+            else:
+                self._set_message(f"⚠️ 安装脚本执行返回代码: {result.returncode}")
+                self.operationFinished.emit(True, f"安装完成，返回代码: {result.returncode}\n{output}\n{error}")
+        
+        except Exception as e:
+            self._set_message(f"❌ 安装失败: {str(e)}")
+            self.operationFinished.emit(False, f"安装失败: {str(e)}")
+    
+    @Slot()
+    def configureGitChinese(self):
+        """将Git的命令提示改为中文"""
+        try:
+            self._set_message("开始配置Git中文提示...")
+            self._set_progress(0)
+            
+            # 获取脚本路径
+            script_dir = Path(__file__).parent / "resources" / "Init" / "Windows"
+            script = script_dir / "将git的命令提示改为中文.py"
+            
+            if not script.exists():
+                self._set_message(f"❌ 配置脚本不存在: {script}")
+                self.operationFinished.emit(False, "配置脚本不存在")
+                return
+            
+            self._set_progress(20)
+            
+            # 执行Python脚本
+            import sys
+            result = subprocess.run(
+                [sys.executable, str(script), "-y"],
+                capture_output=True,
+                text=True,
+                encoding='utf-8',
+                errors='ignore'
+            )
+            
+            self._set_progress(80)
+            
+            output = result.stdout if result.stdout else ""
+            error = result.stderr if result.stderr else ""
+            
+            self._set_progress(100)
+            
+            if result.returncode == 0:
+                self._set_message("✅ Git中文配置完成")
+                self.operationFinished.emit(True, f"配置完成\n{output}")
+            else:
+                self._set_message(f"⚠️ 配置脚本执行返回代码: {result.returncode}")
+                self.operationFinished.emit(True, f"配置完成，返回代码: {result.returncode}\n{output}\n{error}")
+        
+        except Exception as e:
+            self._set_message(f"❌ 配置失败: {str(e)}")
+            self.operationFinished.emit(False, f"配置失败: {str(e)}")
+    
+    @Slot()
+    def initializeWindows(self):
+        """
+        初始化Windows系统
+        调用初始化脚本进行系统配置
+        """
+        try:
+            self._set_message("🔧 开始初始化Windows系统...")
+            self._set_progress(0)
+            
+            # 获取脚本路径
+            current_file = Path(__file__)
+            project_root = current_file.parent.parent.parent
+            script = project_root / "src" / "resources" / "Init" / "Windows" / "初始化Windows.ps1"
+            
+            if not script.exists():
+                self._set_message(f"❌ 初始化脚本不存在: {script}")
+                self.operationFinished.emit(False, "初始化脚本不存在")
+                return
+            
+            self._set_progress(10)
+            self._set_message("📦 正在执行初始化脚本...")
+            
+            # 执行PowerShell脚本
+            result = subprocess.run(
+                ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(script)],
+                capture_output=True,
+                text=True,
+                encoding='utf-8',
+                errors='replace'
+            )
+            
+            self._set_progress(90)
+            
+            output = result.stdout if result.stdout else ""
+            error = result.stderr if result.stderr else ""
+            
+            self._set_progress(100)
+            
+            if result.returncode == 0:
+                self._set_message("✅ Windows系统初始化完成")
+                self.operationFinished.emit(True, f"初始化完成\n{output}")
+            else:
+                self._set_message(f"⚠️ 初始化脚本执行返回代码: {result.returncode}")
+                self.operationFinished.emit(True, f"初始化完成，返回代码: {result.returncode}\n{output}\n{error}")
+        
+        except Exception as e:
+            self._set_message(f"❌ 初始化失败: {str(e)}")
+            self.operationFinished.emit(False, f"初始化失败: {str(e)}")

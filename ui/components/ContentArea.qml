@@ -29,6 +29,8 @@ Rectangle {
                     return "../pages/AllToolsPage.qml"
                 case "windows_tool":
                     return "../pages/WindowsToolPage.qml"
+                case "linux_tool":
+                    return "../pages/LinuxToolPage.qml"
                 case "git_tool":
                     return "../pages/GitToolPage.qml"
                 case "qt_tool":

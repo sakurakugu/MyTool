@@ -11,6 +11,7 @@ from PySide6.QtQml import QQmlApplicationEngine
 
 from .models.tool_manager import ToolManager
 from .models.windows_tools import WindowsTools
+from .models.linux_tools import LinuxTools
 from .models.git_tools import GitTools
 from .models.qt_tools import QtTools
 from .models.file_time_tools import FileTimeTools
@@ -33,6 +34,7 @@ class Application(QObject):
         
         # 创建工具实例
         self._windows_tools = WindowsTools()
+        self._linux_tools = LinuxTools()
         self._git_tools = GitTools()
         self._qt_tools = QtTools()
         self._file_time_tools = FileTimeTools()
@@ -91,6 +93,10 @@ class Application(QObject):
         """获取Windows工具"""
         return self._windows_tools
     
+    def get_linux_tools(self):
+        """获取Linux工具"""
+        return self._linux_tools
+    
     def get_git_tools(self):
         """获取Git工具"""
         return self._git_tools
@@ -126,6 +132,7 @@ def create_application():
     context.setContextProperty("app", application)
     context.setContextProperty("toolManager", application.get_tool_manager())
     context.setContextProperty("windowsTools", application.get_windows_tools())
+    context.setContextProperty("linuxTools", application.get_linux_tools())
     context.setContextProperty("gitTools", application.get_git_tools())
     context.setContextProperty("qtTools", application.get_qt_tools())
     context.setContextProperty("fileTimeTools", application.get_file_time_tools())

@@ -29,6 +29,12 @@ class ToolManager(QObject):
                 "category": "tool"
             },
             {
+                "id": "linux_tool",
+                "name": "Linux工具",
+                "icon": "🐧",
+                "category": "tool"
+            },
+            {
                 "id": "git_tool",
                 "name": "Git工具",
                 "icon": "🔧",
