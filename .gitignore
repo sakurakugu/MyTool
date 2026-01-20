@@ -88,3 +88,6 @@ __pycache__/
 
 # 旧的工具（待移植）
 old_tools/
+
+
+.qmlls.ini
