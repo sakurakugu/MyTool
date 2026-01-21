@@ -111,6 +111,8 @@ if [ "$is_desktop" = true ]; then
 
     # 桌面显示回收站图标
     gsettings set org.gnome.shell.extensions.ding show-trash true
+else
+    git config --global core.editor "vim"
 fi
 
 # 要手动修改的部分
