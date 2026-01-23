@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import MyTool 1.0
 
 /**
  * 设置页面
@@ -8,13 +9,14 @@ import QtQuick.Layouts
  */
 Rectangle {
     id: settingsPage
-    color: "white"
+    color: Theme.background
     
     ScrollView {
         anchors.fill: parent
         
         ColumnLayout {
             width: parent.width
+            anchors.margins: 24
             spacing: 24
             
             // 页面标题
@@ -30,7 +32,7 @@ Rectangle {
                     text: "设置"
                     font.pixelSize: 24
                     font.bold: true
-                    color: "#333333"
+                    color: Theme.text
                 }
             }
             
@@ -51,6 +53,7 @@ Rectangle {
                             Layout.preferredWidth: 120
                             text: "语言："
                             font.pixelSize: 14
+                            color: Theme.text
                         }
                         
                         ComboBox {
@@ -67,11 +70,23 @@ Rectangle {
                             Layout.preferredWidth: 120
                             text: "主题："
                             font.pixelSize: 14
+                            color: Theme.text
                         }
                         
                         ComboBox {
+                            id: themeComboBox
                             Layout.fillWidth: true
                             model: ["浅色", "深色", "跟随系统"]
+                            currentIndex: Theme.mode === "dark" ? 1 : (Theme.mode === "system" ? 2 : 0)
+                            onActivated: {
+                                if (currentIndex === 0) {
+                                    Theme.mode = "light"
+                                } else if (currentIndex === 1) {
+                                    Theme.mode = "dark"
+                                } else {
+                                    Theme.mode = "system"
+                                }
+                            }
                         }
                     }
                 }
@@ -115,12 +130,13 @@ Rectangle {
                     Text {
                         text: application.appName + " v" + application.appVersion
                         font.pixelSize: 14
+                        color: Theme.text
                     }
                     
                     Text {
                         text: "多功能工具箱应用程序"
                         font.pixelSize: 13
-                        color: "#666666"
+                        color: Theme.textMuted
                     }
                 }
             }

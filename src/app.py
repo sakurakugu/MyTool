@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 from PySide6.QtCore import QObject, Slot, Signal, Property, QUrl
 from PySide6.QtGui import QGuiApplication
-from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtQml import QQmlApplicationEngine, qmlRegisterSingletonType
 
 from .models.tool_manager import ToolManager
 from .models.windows_tools import WindowsTools
@@ -129,6 +129,9 @@ def create_application():
     
     # 创建 QML 引擎
     engine = QQmlApplicationEngine()
+    
+    theme_qml = Path(__file__).resolve().parent.parent / "ui" / "theme" / "Theme.qml"
+    qmlRegisterSingletonType(QUrl.fromLocalFile(str(theme_qml)), "MyTool", 1, 0, "Theme")
     
     # 创建应用程序实例
     application = Application()

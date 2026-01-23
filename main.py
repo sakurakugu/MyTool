@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 from PySide6.QtCore import QUrl, qInstallMessageHandler
 from PySide6.QtGui import QGuiApplication
-from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtQml import QQmlApplicationEngine, qmlRegisterSingletonType
 from src.app import Application
 
 
@@ -33,6 +33,8 @@ if __name__ == "__main__":
     app.setOrganizationName("MyCompany")
     
     engine = QQmlApplicationEngine()
+    theme_qml = Path(__file__).resolve().parent / "ui" / "theme" / "Theme.qml"
+    qmlRegisterSingletonType(QUrl.fromLocalFile(str(theme_qml)), "MyTool", 1, 0, "Theme")
     
     # 创建 Application 对象
     application = Application()

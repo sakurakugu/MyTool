@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import MyTool 1.0
 
 /**
  * 标签栏组件
@@ -8,8 +9,8 @@ import QtQuick.Layouts
  */
 Rectangle {
     id: tabbar
-    color: "#F5F5F5"
-    border.color: "#E0E0E0"
+    color: Theme.surface
+    border.color: Theme.border
     border.width: 1
     
     // 属性
@@ -88,8 +89,8 @@ Rectangle {
                 Layout.preferredHeight: 32
                 Layout.preferredWidth: 120
                 radius: 4
-                color: tabbar.currentTab === toolId ? "#2196F3" : 
-                       (mouseArea.containsMouse ? "#E3F2FD" : "transparent")
+                color: tabbar.currentTab === toolId ? Theme.primary :
+                       (mouseArea.containsMouse ? Theme.highlight : "transparent")
                 
                 RowLayout {
                     anchors.fill: parent
@@ -102,7 +103,7 @@ Rectangle {
                         Layout.fillWidth: true
                         text: title
                         font.pixelSize: 13
-                        color: tabbar.currentTab === toolId ? "#FFFFFF" : "#333333"
+                        color: tabbar.currentTab === toolId ? Theme.primaryOn : Theme.text
                         elide: Text.ElideRight
                         z: 1
                     }
@@ -111,7 +112,7 @@ Rectangle {
                     Text {
                         text: "✕"
                         font.pixelSize: 12
-                        color: tabbar.currentTab === toolId ? "#FFFFFF" : "#666666"
+                        color: tabbar.currentTab === toolId ? Theme.primaryOn : Theme.textMuted
                         visible: tabsModel.count > 1  // 至少保留一个标签
                         z: 2
                         

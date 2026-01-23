@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import MyTool 1.0
 
 /**
  * 工具栏组件
@@ -8,7 +9,7 @@ import QtQuick.Layouts
  */
 Rectangle {
     id: toolbar
-    color: "#2196F3"
+    color: Theme.primary
     
     RowLayout {
         anchors.fill: parent
@@ -25,7 +26,7 @@ Rectangle {
                 width: 32
                 height: 32
                 radius: 6
-                color: "#1976D2"
+                color: Theme.primaryStrong
                 
                 Text {
                     anchors.centerIn: parent
@@ -39,7 +40,7 @@ Rectangle {
                 text: "MyTool"
                 font.pixelSize: 18
                 font.bold: true
-                color: "white"
+                color: Theme.primaryOn
             }
         }
         
@@ -53,7 +54,7 @@ Rectangle {
             Layout.preferredWidth: 300
             Layout.preferredHeight: 32
             radius: 16
-            color: "#1976D2"
+            color: Theme.primaryStrong
             
             RowLayout {
                 anchors.fill: parent
@@ -64,12 +65,14 @@ Rectangle {
                 Text {
                     text: "🔍"
                     font.pixelSize: 16
+                    color: Theme.primaryOn
                 }
                 
                 TextField {
                     Layout.fillWidth: true
                     placeholderText: "搜索工具..."
-                    color: "white"
+                    color: Theme.primaryOn
+                    placeholderTextColor: Theme.primaryOn
                     selectByMouse: true
                 }
             }
@@ -84,6 +87,8 @@ Rectangle {
                 text: "🔔"
                 font.pixelSize: 18
                 flat: true
+                palette.buttonText: Theme.primaryOn
+                palette.button: "transparent"
                 
                 onClicked: {
                     console.log("通知")
@@ -95,6 +100,8 @@ Rectangle {
                 text: "❓"
                 font.pixelSize: 18
                 flat: true
+                palette.buttonText: Theme.primaryOn
+                palette.button: "transparent"
                 
                 onClicked: {
                     console.log("帮助")

@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import "../pages"
+import MyTool 1.0
 
 /**
  * 内容区域组件
@@ -8,7 +9,7 @@ import "../pages"
  */
 Rectangle {
     id: contentArea
-    color: "white"
+    color: Theme.background
     
     // 当前显示的工具
     property string currentTool: "all_tools"
@@ -17,7 +18,7 @@ Rectangle {
     Loader {
         id: pageLoader
         anchors.fill: parent
-        anchors.margins: 16
+        anchors.margins: 24
         
         // 根据当前工具加载对应页面
         source: {

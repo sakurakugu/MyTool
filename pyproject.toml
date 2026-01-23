@@ -17,6 +17,7 @@ files = [
     "src/utils/config.py",
     "src/resources/modify_file_time.ps1",
     "ui/Main.qml",
+    "ui/theme/Theme.qml",
     "ui/components/ContentArea.qml",
     "ui/components/SidebarComponent.qml",
     "ui/components/SidebarItem.qml",

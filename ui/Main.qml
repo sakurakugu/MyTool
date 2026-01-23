@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import "components"
+import MyTool 1.0
 
 /**
  * 主窗口
@@ -13,6 +14,17 @@ ApplicationWindow {
     width: 1200
     height: 800
     title: "MyTool - 多功能工具箱"
+    color: Theme.background
+    palette.window: Theme.background
+    palette.windowText: Theme.text
+    palette.base: Theme.surface
+    palette.alternateBase: Theme.surfaceAlt
+    palette.text: Theme.text
+    palette.button: Theme.surface
+    palette.buttonText: Theme.text
+    palette.highlight: Theme.primary
+    palette.highlightedText: Theme.primaryOn
+    palette.placeholderText: Theme.textSubtle
     
     // 主布局
     ColumnLayout {
@@ -62,7 +74,7 @@ ApplicationWindow {
             Rectangle {
                 Layout.preferredWidth: 1
                 Layout.fillHeight: true
-                color: "#E0E0E0"
+                color: Theme.border
             }
             
             // 标签栏和内容区域的垂直布局

@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import MyTool 1.0
 
 /**
  * 侧边栏组件
@@ -8,7 +9,7 @@ import QtQuick.Layouts
  */
 Rectangle {
     id: sidebar
-    color: "#F5F5F5"
+    color: Theme.surface
     
     // 信号
     signal toolSelected(string toolId)
@@ -56,7 +57,7 @@ Rectangle {
         Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: 1
-            color: "#E0E0E0"
+            color: Theme.border
         }
         
         // 底部固定项（个人中心和设置）

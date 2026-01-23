@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import MyTool 1.0
 
 /**
  * 个人中心页面
@@ -8,13 +9,14 @@ import QtQuick.Layouts
  */
 Rectangle {
     id: profilePage
-    color: "white"
+    color: Theme.background
     
     ScrollView {
         anchors.fill: parent
         
         ColumnLayout {
             width: parent.width
+            anchors.margins: 24
             spacing: 24
             
             // 页面标题
@@ -30,7 +32,7 @@ Rectangle {
                     text: "个人中心"
                     font.pixelSize: 24
                     font.bold: true
-                    color: "#333333"
+                    color: Theme.text
                 }
             }
             
@@ -39,8 +41,9 @@ Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 120
                 radius: 8
-                border.color: "#E0E0E0"
+                border.color: Theme.border
                 border.width: 1
+                color: Theme.card
                 
                 RowLayout {
                     anchors.fill: parent
@@ -52,7 +55,7 @@ Rectangle {
                         Layout.preferredWidth: 80
                         Layout.preferredHeight: 80
                         radius: 40
-                        color: "#2196F3"
+                        color: Theme.primary
                         
                         Text {
                             anchors.centerIn: parent
@@ -70,19 +73,19 @@ Rectangle {
                             text: "用户名"
                             font.pixelSize: 18
                             font.bold: true
-                            color: "#333333"
+                            color: Theme.text
                         }
                         
                         Text {
                             text: "user@example.com"
                             font.pixelSize: 14
-                            color: "#666666"
+                            color: Theme.textMuted
                         }
                         
                         Text {
                             text: "注册时间：2024-01-01"
                             font.pixelSize: 12
-                            color: "#999999"
+                            color: Theme.textSubtle
                         }
                     }
                     
@@ -113,7 +116,7 @@ Rectangle {
                         Layout.fillWidth: true
                         Layout.preferredHeight: 80
                         radius: 4
-                        color: "#E3F2FD"
+                        color: Theme.highlight
                         
                         ColumnLayout {
                             anchors.centerIn: parent
@@ -124,14 +127,14 @@ Rectangle {
                                 text: "365"
                                 font.pixelSize: 24
                                 font.bold: true
-                                color: "#2196F3"
+                                color: Theme.primary
                             }
                             
                             Text {
                                 Layout.alignment: Qt.AlignHCenter
                                 text: "使用天数"
                                 font.pixelSize: 13
-                                color: "#666666"
+                                color: Theme.textMuted
                             }
                         }
                     }
@@ -141,7 +144,7 @@ Rectangle {
                         Layout.fillWidth: true
                         Layout.preferredHeight: 80
                         radius: 4
-                        color: "#E8F5E9"
+                        color: Theme.surfaceAlt
                         
                         ColumnLayout {
                             anchors.centerIn: parent
@@ -152,14 +155,14 @@ Rectangle {
                                 text: "1,234"
                                 font.pixelSize: 24
                                 font.bold: true
-                                color: "#4CAF50"
+                                color: Theme.success
                             }
                             
                             Text {
                                 Layout.alignment: Qt.AlignHCenter
                                 text: "使用次数"
                                 font.pixelSize: 13
-                                color: "#666666"
+                                color: Theme.textMuted
                             }
                         }
                     }
@@ -185,14 +188,14 @@ Rectangle {
                             Text {
                                 text: "•"
                                 font.pixelSize: 16
-                                color: "#2196F3"
+                                color: Theme.primary
                             }
                             
                             Text {
                                 Layout.fillWidth: true
                                 text: modelData
                                 font.pixelSize: 14
-                                color: "#333333"
+                                color: Theme.text
                             }
                         }
                     }

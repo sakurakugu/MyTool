@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import MyTool 1.0
 
 /**
  * 侧边栏项组件
@@ -8,7 +9,7 @@ import QtQuick.Controls
 Rectangle {
     id: sidebarItem
     height: 48
-    color: mouseArea.containsMouse ? "#E3F2FD" : "transparent"
+    color: sidebarItem.selected ? Theme.highlight : (mouseArea.containsMouse ? Theme.surfaceAlt : "transparent")
     
     // 属性
     property string itemIcon: ""
@@ -29,6 +30,7 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             text: sidebarItem.itemIcon
             font.pixelSize: 20
+            color: Theme.text
         }
         
         // 文本
@@ -36,7 +38,7 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             text: sidebarItem.itemText
             font.pixelSize: 14
-            color: "#333333"
+            color: Theme.text
         }
     }
     
@@ -59,6 +61,6 @@ Rectangle {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         width: 3
-        color: "#2196F3"
+        color: Theme.primary
     }
 }

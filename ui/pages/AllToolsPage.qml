@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import MyTool 1.0
 
 /**
  * 全部工具页面
@@ -8,10 +9,11 @@ import QtQuick.Layouts
  */
 Rectangle {
     id: allToolsPage
-    color: "white"
+    color: Theme.background
     
     ColumnLayout {
         anchors.fill: parent
+        anchors.margins: 24
         spacing: 24
         
         // 页面标题
@@ -19,26 +21,26 @@ Rectangle {
             text: "全部工具"
             font.pixelSize: 24
             font.bold: true
-            color: "#333333"
+            color: Theme.text
         }
         
         // 工具网格
         GridView {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            cellWidth: 180
-            cellHeight: 180
+            cellWidth: 200
+            cellHeight: 200
             clip: true
             
             model: (typeof toolManager !== 'undefined' && toolManager && toolManager.tools) ? toolManager.tools.filter(function(t) { return t.category === "tool" }) : []
             
             delegate: Rectangle {
-                width: 160
-                height: 160
-                radius: 8
-                border.color: "#E0E0E0"
+                width: 180
+                height: 180
+                radius: 12
+                border.color: Theme.border
                 border.width: 1
-                color: mouseArea.containsMouse ? "#F5F5F5" : "white"
+                color: mouseArea.containsMouse ? Theme.cardHover : Theme.card
                 
                 ColumnLayout {
                     anchors.fill: parent
@@ -58,7 +60,7 @@ Rectangle {
                         Layout.fillWidth: true
                         text: modelData.name
                         font.pixelSize: 16
-                        color: "#333333"
+                        color: Theme.text
                         horizontalAlignment: Text.AlignHCenter
                         wrapMode: Text.WordWrap
                     }
