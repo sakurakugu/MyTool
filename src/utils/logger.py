@@ -4,7 +4,12 @@ import sys
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from datetime import datetime
-from PySide6.QtCore import QtMsgType, qInstallMessageHandler
+
+try:
+    from PySide6.QtCore import QtMsgType
+    HAS_QT_CORE = True
+except ImportError:
+    HAS_QT_CORE = False
 
 _logger_initialized = False
 
@@ -20,13 +25,48 @@ def _resolve_log_dir(app_name):
 
 
 class _ConsoleFormatter(logging.Formatter):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._use_color = sys.stdout.isatty()
+        self._level_colors = {
+            logging.DEBUG: "\033[36m",
+            logging.INFO: "\033[32m",
+            logging.WARNING: "\033[33m",
+            logging.ERROR: "\033[31m",
+            logging.CRITICAL: "\033[35m",
+        }
+        self._reset_color = "\033[0m"
+
     def formatTime(self, record, datefmt=None):
         return datetime.fromtimestamp(record.created).astimezone().strftime("%H:%M:%S.%f")
+
+    def format(self, record):
+        original_levelname = record.levelname
+        if record.levelno == logging.DEBUG:
+            record.levelname = "调试"
+        elif record.levelno == logging.INFO:
+            record.levelname = "信息"
+        elif record.levelno == logging.WARNING:
+            record.levelname = "警告"
+        elif record.levelno == logging.ERROR:
+            record.levelname = "错误"
+        elif record.levelno == logging.CRITICAL:
+            record.levelname = "严重"
+        message = super().format(record)
+        record.levelname = original_levelname
+        if self._use_color:
+            color = self._level_colors.get(record.levelno)
+            if color:
+                return f"{color}{message}{self._reset_color}"
+        return message
 
 
 class _FileFormatter(logging.Formatter):
     def formatTime(self, record, datefmt=None):
-        return datetime.fromtimestamp(record.created).astimezone().isoformat(timespec="milliseconds")
+        value = datetime.fromtimestamp(record.created).astimezone().isoformat(timespec="microseconds")
+        if value.endswith("Z") or value.endswith("z"):
+            return f"{value[:-1]}+00:00"
+        return value
 
 
 def _parse_level(level_value, debug):
@@ -73,20 +113,21 @@ def get_logger(name=None):
 
 
 def _qt_level(mode):
-    if mode == QtMsgType.QtDebugMsg:
-        return logging.DEBUG
-    if mode == QtMsgType.QtInfoMsg:
-        return logging.INFO
-    if mode == QtMsgType.QtWarningMsg:
-        return logging.WARNING
-    if mode == QtMsgType.QtCriticalMsg:
-        return logging.ERROR
-    if mode == QtMsgType.QtFatalMsg:
-        return logging.CRITICAL
+    if HAS_QT_CORE:
+        if mode == QtMsgType.QtDebugMsg:
+            return logging.DEBUG
+        if mode == QtMsgType.QtInfoMsg:
+            return logging.INFO
+        if mode == QtMsgType.QtWarningMsg:
+            return logging.WARNING
+        if mode == QtMsgType.QtCriticalMsg:
+            return logging.ERROR
+        if mode == QtMsgType.QtFatalMsg:
+            return logging.CRITICAL
     return logging.INFO
 
 
-def _qt_message_handler(mode, context, message):
+def qt_message_handler(mode, context, message):
     logger = get_logger("qt")
     level = _qt_level(mode)
     try:
@@ -101,6 +142,3 @@ def _qt_message_handler(mode, context, message):
     except Exception:
         logger.log(level, message)
 
-
-def install_qt_message_handler():
-    qInstallMessageHandler(_qt_message_handler)

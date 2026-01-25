@@ -91,3 +91,5 @@ old_tools/
 
 
 .qmlls.ini
+
+logs/

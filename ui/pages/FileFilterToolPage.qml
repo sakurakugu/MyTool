@@ -48,13 +48,13 @@ Rectangle {
         interval: 50
         repeat: false
         onTriggered: {
-            console.log("[QML] Updating rules list")
+            console.log("[QML] 更新规则列表")
             updateRulesList()
         }
     }
     
     Component.onCompleted: {
-        console.log("[QML] Component completed")
+        console.log("[QML] 组件完成加载")
         // 监听规则变化
         if (typeof fileFilterTools !== 'undefined') {
             updateTimer.start()
@@ -64,25 +64,25 @@ Rectangle {
     // 更新规则列表
     function updateRulesList() {
         if (isUpdating) {
-            console.log("[QML] Already updating, skipping")
+            console.log("[QML] 正在更新规则列表，跳过")
             return
         }
         
         if (typeof fileFilterTools === 'undefined') {
-            console.log("[QML] fileFilterTools is undefined")
+            console.log("[QML] fileFilterTools 未定义")
             return
         }
         
         isUpdating = true
-        console.log("[QML] Clearing rules model")
+        console.log("[QML] 清除规则模型")
         rulesModel.clear()
-        console.log("[QML] Getting rules from fileFilterTools")
+        console.log("[QML] 获取 fileFilterTools 中的规则")
         var rules = fileFilterTools.filterRules
-        console.log("[QML] Got " + rules.length + " rules")
+        console.log("[QML] 获得 " + rules.length + " 条规则")
         for (var i = 0; i < rules.length; i++) {
             rulesModel.append(rules[i])
         }
-        console.log("[QML] Rules list updated")
+        console.log("[QML] 规则列表更新完成")
         isUpdating = false
     }
     
@@ -92,15 +92,15 @@ Rectangle {
         
         function onRulesChanged() {
             if (isUpdating) {
-                console.log("[QML] onRulesChanged received but already updating, ignoring")
+                console.log("[QML] onRulesChanged 信号接收，但正在更新，忽略")
                 return
             }
-            console.log("[QML] onRulesChanged signal received")
+            console.log("[QML] onRulesChanged 信号接收，更新规则列表")
             updateTimer.start()
         }
         
         function onOperationFinished(success, message) {
-            console.log("[QML] onOperationFinished:", success, message)
+            console.log("[QML] onOperationFinished 信号接收:", success, message)
             if (success) {
                 messageArea.text = "✓ " + message
                 messageArea.color = "#4CAF50"
@@ -116,7 +116,7 @@ Rectangle {
         }
         
         function onMessageChanged() {
-            console.log("[QML] onMessageChanged signal received")
+            console.log("[QML] onMessageChanged 信号接收")
             if (typeof fileFilterTools !== 'undefined') {
                 messageArea.text = fileFilterTools.message
                 messageArea.color = "#2196F3"

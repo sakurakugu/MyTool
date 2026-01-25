@@ -6,12 +6,12 @@ MyTool - 多功能工具箱
 import os
 import sys
 from pathlib import Path
-from PySide6.QtCore import QUrl
+from PySide6.QtCore import QUrl, qInstallMessageHandler
 from PySide6.QtGui import QGuiApplication
 from PySide6.QtQml import QQmlApplicationEngine, qmlRegisterSingletonType
 from src.app import Application
 from src.utils.config import APP_NAME, APP_VERSION
-from src.utils.logger import init_logging, install_qt_message_handler, get_logger
+from src.utils.logger import init_logging, qt_message_handler, get_logger
 
 
 if __name__ == "__main__":
@@ -23,8 +23,8 @@ if __name__ == "__main__":
         pass
     
     debug_env = os.getenv("MYTOOL_DEBUG", "").lower() in {"1", "true", "yes", "on"}
-    init_logging(APP_NAME, log_level=os.getenv("MYTOOL_LOG_LEVEL"), debug=debug_env)
-    install_qt_message_handler()
+    init_logging(APP_NAME, log_level=os.getenv("MYTOOL_LOG_LEVEL"), debug=True)
+    qInstallMessageHandler(qt_message_handler)
     logger = get_logger("main")
     
     # 创建应用程序实例

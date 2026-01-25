@@ -403,15 +403,15 @@ Rectangle {
     
     Component.onCompleted: {
         // 页面加载完成后的初始化
-        console.log("FileTimeToolPage loaded")
-        console.log("typeof fileTimeTools:", typeof fileTimeTools)
+        console.log("文件时间工具页面加载完成")
+        console.log("fileTimeTools 类型:", typeof fileTimeTools)
         console.log("fileTimeTools:", fileTimeTools)
         
         if (typeof fileTimeTools !== 'undefined' && fileTimeTools !== null) {
-            console.log("fileTimeTools is available")
+            console.log("fileTimeTools 已初始化")
             messageText.text = "就绪，等待操作..."
         } else {
-            console.log("fileTimeTools is NOT available")
+            console.log("fileTimeTools 未初始化")
             messageText.text = "⚠️ 文件时间工具未初始化"
         }
     }
