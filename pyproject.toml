@@ -15,6 +15,7 @@ files = [
     "src/models/windows_tools.py",
     "src/utils/__init__.py",
     "src/utils/config.py",
+    "src/utils/logger.py",
     "src/resources/modify_file_time.ps1",
     "ui/Main.qml",
     "ui/theme/Theme.qml",

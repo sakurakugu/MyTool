@@ -10,6 +10,9 @@ import subprocess
 import urllib.request
 from pathlib import Path
 from PySide6.QtCore import QObject, Signal, Slot, Property, QThread
+from ..utils.logger import get_logger
+
+logger = get_logger("git_tools")
 
 
 class GitTranslationWorker(QThread):
@@ -121,7 +124,7 @@ class GitTools(QObject):
         """设置消息"""
         self._message = msg
         self.messageChanged.emit(msg)
-        print(f"[Git工具] {msg}")
+        logger.info(f"[Git工具] {msg}")
     
     @Property(int, notify=progressChanged)
     def progress(self):

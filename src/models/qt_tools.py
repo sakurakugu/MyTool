@@ -7,6 +7,9 @@ import os
 import re
 from pathlib import Path
 from PySide6.QtCore import QObject, Signal, Slot, Property
+from ..utils.logger import get_logger
+
+logger = get_logger("qt_tools")
 
 
 class QtTools(QObject):
@@ -33,7 +36,7 @@ class QtTools(QObject):
         """设置消息"""
         self._message = msg
         self.messageChanged.emit(msg)
-        print(f"[Qt工具] {msg}")
+        logger.info(f"[Qt工具] {msg}")
     
     @Property(int, notify=progressChanged)
     def progress(self):

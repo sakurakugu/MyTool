@@ -17,6 +17,9 @@ from .models.qt_tools import QtTools
 from .models.file_time_tools import FileTimeTools
 from .models.file_filter_tools import FileFilterTools
 from .utils.config import APP_NAME, APP_VERSION
+from .utils.logger import get_logger
+
+logger = get_logger("app")
 
 
 class Application(QObject):
@@ -56,13 +59,13 @@ class Application(QObject):
     @Slot(str)
     def switchTool(self, tool_id):
         """切换工具"""
-        print(f"切换到工具: {tool_id}")
+        logger.info(f"切换到工具: {tool_id}")
         self.currentTool = tool_id
     
     @Slot()
     def openSettings(self):
         """打开设置"""
-        print("打开设置")
+        logger.info("打开设置")
         self.currentTool = "settings"
     
     @Property(str, constant=True)
@@ -78,7 +81,7 @@ class Application(QObject):
     @Slot()
     def openProfile(self):
         """打开个人中心"""
-        print("打开个人中心")
+        logger.info("打开个人中心")
         self.currentTool = "profile"
     
     @Slot(str)
@@ -118,41 +121,3 @@ class Application(QObject):
     def get_sidebar_model(self):
         """获取侧边栏模型"""
         return self._sidebar_model
-
-
-def create_application():
-    """创建应用程序实例"""
-    # 创建 Qt 应用
-    app = QGuiApplication(sys.argv)
-    app.setApplicationName("MyTool")
-    app.setOrganizationName("MyCompany")
-    
-    # 创建 QML 引擎
-    engine = QQmlApplicationEngine()
-    
-    theme_qml = Path(__file__).resolve().parent.parent / "ui" / "theme" / "Theme.qml"
-    qmlRegisterSingletonType(QUrl.fromLocalFile(str(theme_qml)), "MyTool", 1, 0, "Theme")
-    
-    # 创建应用程序实例
-    application = Application()
-    
-    # 注册应用程序对象到 QML 上下文（必须在加载 QML 之前）
-    context = engine.rootContext()
-    context.setContextProperty("app", application)
-    context.setContextProperty("toolManager", application.get_tool_manager())
-    context.setContextProperty("windowsTools", application.get_windows_tools())
-    context.setContextProperty("linuxTools", application.get_linux_tools())
-    context.setContextProperty("gitTools", application.get_git_tools())
-    context.setContextProperty("qtTools", application.get_qt_tools())
-    context.setContextProperty("fileTimeTools", application.get_file_time_tools())
-    context.setContextProperty("fileFilterTools", application.get_file_filter_tools())
-    
-    # 加载主 QML 文件
-    qml_file = Path(__file__).resolve().parent.parent / "ui" / "Main.qml"
-    engine.load(QUrl.fromLocalFile(str(qml_file)))
-    
-    # 检查是否成功加载
-    if not engine.rootObjects():
-        return None
-    
-    return app

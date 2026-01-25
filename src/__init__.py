@@ -1,4 +1,6 @@
 """
 MyTool 应用程序包
 """
-__version__ = "1.0.0"
+from src.utils.config import APP_VERSION
+
+__version__ = APP_VERSION

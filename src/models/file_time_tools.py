@@ -9,6 +9,9 @@ import subprocess
 from pathlib import Path
 from datetime import datetime
 from PySide6.QtCore import QObject, Signal, Slot, Property
+from ..utils.logger import get_logger
+
+logger = get_logger("file_time_tools")
 
 
 class FileTimeTools(QObject):
@@ -78,7 +81,7 @@ class FileTimeTools(QObject):
         """设置消息"""
         self._message = msg
         self.messageChanged.emit(msg)
-        print(f"[文件时间工具] {msg}")
+        logger.info(f"[文件时间工具] {msg}")
     
     def _extract_time_from_filename(self, file_path):
         """从文件名中提取时间
@@ -125,7 +128,7 @@ class FileTimeTools(QObject):
             
             return None
         except Exception as e:
-            print(f"从文件名提取时间失败: {str(e)}")
+            logger.warning(f"从文件名提取时间失败: {str(e)}")
             return None
     
     def _extract_time_from_exif(self, file_path):
@@ -163,7 +166,7 @@ class FileTimeTools(QObject):
             # 如果Pillow未安装，返回None
             return None
         except Exception as e:
-            print(f"从EXIF提取时间失败: {str(e)}")
+            logger.warning(f"从EXIF提取时间失败: {str(e)}")
             return None
     
     def _modify_file_time_ps(self, file_path, time_str, modify_type):

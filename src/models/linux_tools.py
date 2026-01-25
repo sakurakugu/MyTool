@@ -7,6 +7,9 @@ import os
 import subprocess
 from pathlib import Path
 from PySide6.QtCore import QObject, Signal, Slot, Property
+from ..utils.logger import get_logger
+
+logger = get_logger("linux_tools")
 
 
 class LinuxTools(QObject):
@@ -31,7 +34,7 @@ class LinuxTools(QObject):
         """设置消息"""
         self._message = msg
         self.messageChanged.emit(msg)
-        print(f"[Linux工具] {msg}")
+        logger.info(f"[Linux工具] {msg}")
     
     @Property(int, notify=progressChanged)
     def progress(self):

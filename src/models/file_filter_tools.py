@@ -7,6 +7,9 @@ import os
 import shutil
 from pathlib import Path
 from PySide6.QtCore import QObject, Signal, Slot, Property
+from ..utils.logger import get_logger
+
+logger = get_logger("file_filter_tools")
 
 
 class FileFilterTools(QObject):
@@ -56,7 +59,7 @@ class FileFilterTools(QObject):
         :param rule_name: 规则名称（可选）
         :return: 是否添加成功
         """
-        print(f"[DEBUG] addFilterRule called: type={file_type}, keywords={keywords}")
+        logger.debug(f"[DEBUG] addFilterRule called: type={file_type}, keywords={keywords}")
         try:
             if not target_folder:
                 self.message = "目标文件夹不能为空"
@@ -97,7 +100,7 @@ class FileFilterTools(QObject):
             }
             
             self._filter_rules.append(rule)
-            print(f"[DEBUG] Rule added, total rules: {len(self._filter_rules)}")
+            logger.debug(f"[DEBUG] Rule added, total rules: {len(self._filter_rules)}")
             
             # 先设置消息，再发送信号，避免信号处理时消息还未更新
             self.message = f"规则添加成功: {rule_name}"
@@ -105,12 +108,12 @@ class FileFilterTools(QObject):
             # 只触发一次信号
             if not self._is_notifying:
                 self._is_notifying = True
-                print(f"[DEBUG] Emitting rulesChanged signal")
+                logger.debug("[DEBUG] Emitting rulesChanged signal")
                 self.rulesChanged.emit()
                 self._is_notifying = False
-                print(f"[DEBUG] Signal emitted")
+                logger.debug("[DEBUG] Signal emitted")
             
-            print(f"[DEBUG] addFilterRule completed successfully")
+            logger.debug("[DEBUG] addFilterRule completed successfully")
             return True
             
         except Exception as e:

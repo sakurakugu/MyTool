@@ -53,10 +53,10 @@ qt_add_qml_module(qml_dummy    # 会自动生成 ./.qmlls.ini
 )
 
 # ---------------- 单例 示例 ----------------
-# set_source_files_properties(
-#     ui/components/ThemeManager.qml
-#     PROPERTIES QT_QML_SINGLETON_TYPE TRUE
-# )
+set_source_files_properties(
+    ui/theme/Theme.qml
+    PROPERTIES QT_QML_SINGLETON_TYPE TRUE
+)
 
 # ---------------- 输出提示 ----------------
 message(STATUS "====== ${APP_NAME} 构建配置 =====")
