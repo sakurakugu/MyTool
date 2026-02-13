@@ -58,6 +58,12 @@ class ToolManager(QObject):
                 "name": "文件过滤转移",
                 "icon": "🎯",
                 "category": "tool"
+            },
+            {
+                "id": "edge_tool",
+                "name": "Edge 配置工具",
+                "icon": "🔷",
+                "category": "tool"
             }
         ]
     

@@ -24,6 +24,7 @@ files = [
     "ui/components/SidebarItem.qml",
     "ui/components/TabBarComponent.qml",
     "ui/components/ToolBarComponent.qml",
+    "ui/pages/EdgeToolPage.qml",
     "ui/pages/AllToolsPage.qml",
     "ui/pages/FileTimeToolPage.qml",
     "ui/pages/GitToolPage.qml",

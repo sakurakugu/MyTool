@@ -50,6 +50,7 @@ if __name__ == "__main__":
     context.setContextProperty("qtTools", application.get_qt_tools())
     context.setContextProperty("fileTimeTools", application.get_file_time_tools())
     context.setContextProperty("fileFilterTools", application.get_file_filter_tools())
+    context.setContextProperty("edgeTools", application.get_edge_tools())
     
     # 加载 QML 文件
     qml_file = Path(__file__).resolve().parent / "ui" / "Main.qml"

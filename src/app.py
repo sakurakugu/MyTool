@@ -16,6 +16,7 @@ from .models.git_tools import GitTools
 from .models.qt_tools import QtTools
 from .models.file_time_tools import FileTimeTools
 from .models.file_filter_tools import FileFilterTools
+from .models.edge_tools import EdgeTools
 from .utils.config import APP_NAME, APP_VERSION
 from .utils.logger import get_logger
 
@@ -43,6 +44,7 @@ class Application(QObject):
         self._qt_tools = QtTools()
         self._file_time_tools = FileTimeTools()
         self._file_filter_tools = FileFilterTools()
+        self._edge_tools = EdgeTools()
         
     @Property(str, notify=toolChanged)
     def currentTool(self):
@@ -117,6 +119,10 @@ class Application(QObject):
     def get_file_filter_tools(self):
         """获取文件过滤转移工具"""
         return self._file_filter_tools
+    
+    def get_edge_tools(self):
+        """获取Edge工具"""
+        return self._edge_tools
     
     def get_sidebar_model(self):
         """获取侧边栏模型"""
